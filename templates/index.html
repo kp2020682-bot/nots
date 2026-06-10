@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Service App</title>
+    <link rel="manifest" href="/static/manifest.json">
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; }
+        .small-btn { padding: 10px 20px; font-size: 14px; cursor: pointer; background: blue; color: white; border: none; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to My App</h1>
+    <p>Service Platform mein aapka swagat hai.</p>
+    
+    <button id="installBtn" class="small-btn" style="display:none;">Install App</button>
+
+    <script>
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('installBtn').style.display = 'inline-block';
+        });
+
+        document.getElementById('installBtn').addEventListener('click', () => {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choice) => {
+                if (choice.outcome === 'accepted') {
+                    document.getElementById('installBtn').style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -6,32 +6,7 @@ users = []
 
 @app.route('/')
 def home():
-    return '''
-    <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-            body {
-                font-family: Arial;
-                padding: 20px;
-                text-align: center;
-            }
-            a {
-                display: block;
-                margin: 10px;
-                font-size: 20px;
-                text-decoration: none;
-                color: blue;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Welcome 🚀</h1>
-        <a href="/add-user">Add User</a>
-        <a href="/users">View Users</a>
-    </body>
-    </html>
-    '''
+    return render_template('index.html')
 
 @app.route('/add-user', methods=['GET', 'POST'])
 def add_user():
